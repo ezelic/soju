@@ -16,27 +16,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
+package live.shuuyu.champagne.commands
 
-plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.1"
-    id("org.jetbrains.dokka")
-    signing
-    `maven-publish`
-}
+/**
+ * Base command for commands that require many functions.
+ * Includes base name, aliases, and executed functions.
+ *
+ * @since 0.1-SNAPSHOT
+ * @author yujin
+ */
+abstract class CommandBase(
+    val name: String,
+    val description: String? = "No description provided on what this does.",
+    ) {
+    /**
+     * Aliases to the current command of which
+     * execute the same function as the main command.
+     *
+     * @since 0.1-SNAPSHOT
+     * @author yujin
+     */
+    public open lateinit var alias: String
 
-repositories {
-    mavenCentral()
-}
+    /**
+     *
+     */
 
-group = Constants.group
-version = Constants.version
 
-tasks {
-    wrapper {
-        gradleVersion = "7.5"
-        distributionType = ALL
-    }
 }

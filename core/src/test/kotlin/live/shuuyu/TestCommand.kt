@@ -1,7 +1,9 @@
+
+
 package live.shuuyu
 
-import live.shuuyu.champagne.CommandParser
+import live.shuuyu.champagne.commands.CommandBase
 
-class TestCommand : CommandParser("test") {
-
+class TestCommand : CommandBase("test") {
+    override var alias: String = listOf("testing", "tust", "Ididthisfornoreasonidk").toString()
 }

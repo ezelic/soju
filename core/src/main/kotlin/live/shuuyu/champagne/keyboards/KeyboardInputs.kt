@@ -16,27 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
+package live.shuuyu.champagne.keyboards
 
-plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.1"
-    id("org.jetbrains.dokka")
-    signing
-    `maven-publish`
-}
+object KeyboardInputs {
 
-repositories {
-    mavenCentral()
-}
-
-group = Constants.group
-version = Constants.version
-
-tasks {
-    wrapper {
-        gradleVersion = "7.5"
-        distributionType = ALL
-    }
 }
