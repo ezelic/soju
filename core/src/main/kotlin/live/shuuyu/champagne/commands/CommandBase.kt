@@ -27,6 +27,7 @@ package live.shuuyu.champagne.commands
  */
 abstract class CommandBase(
     val name: String,
+    open val alias: List<String>? = null,
     val description: String? = "No description provided on what this does.",
     ) {
     /**
@@ -36,11 +37,5 @@ abstract class CommandBase(
      * @since 0.1-SNAPSHOT
      * @author yujin
      */
-    public open lateinit var alias: String
-
-    /**
-     *
-     */
-
-
+    final fun alias(): List<String>? = null
 }

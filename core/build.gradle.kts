@@ -23,11 +23,10 @@ plugins {
     java
 }
 
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-
-
-}
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    api(kotlin("stdlib-jdk8"))
 }

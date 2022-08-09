@@ -17,3 +17,31 @@
  */
 
 package live.shuuyu.champagne.chat
+
+/**
+ * Components that are used inside of chats.
+ *
+ * @since 0.1-SNAPSHOT
+ * @author yujin
+ */
+object ChatComponent {
+    /**
+     * Executes a specific command if a certain event is met.
+     *
+     * @since 0.1-SNAPSHOT
+     * @author yujin
+     */
+    fun execCommand(text: String) {
+
+    }
+
+    /**
+     * Makes the player send the specified message.
+     *
+     * @since 0.1-SNAPSHOT
+     * @author yujin
+     */
+    fun say(text: String) {
+
+    }
+}
