@@ -1,6 +1,6 @@
 package live.shuuyu
 
-import live.shuuyu.champagne.commands.CommandBase
+import live.shuuyu.soju.commands.CommandBase
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 
