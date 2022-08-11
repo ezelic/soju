@@ -28,5 +28,11 @@ repositories {
 }
 
 dependencies {
+    val lwjglVersion = "3.3.1"
+    compileOnly("org.lwjgl:lwjgl-opengl:$lwjglVersion")
+    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-windows")
+    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-linux")
+    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-macos")
+    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-macos-arm64")
     api(kotlin("stdlib-jdk8"))
 }

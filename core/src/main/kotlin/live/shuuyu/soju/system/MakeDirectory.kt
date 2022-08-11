@@ -16,44 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package live.shuuyu.soju.player
+package live.shuuyu.soju.system
 
-/**
- * Gets all positions of the current player/entity.
- *
- * @since 0.1-SNAPSHOT
- * @author yujin
- */
-object GetPlayerPos {
+import java.io.File
+
+object MakeDirectory {
     /**
-     * Gets the X position of the player.
+     * Creates a directory to house whatever the
+     * heck you want to do with your mod.
      *
      * @since 0.1-SNAPSHOT
      * @author yujin
      */
-    fun getPlayerXPos() {
+    fun createDirectory(file: File) {
 
     }
 
     /**
-     * Gets the Y position of the player.
-     * This is your height position. I'm just saying unless
-     * you don't know.
+     * Deletes a directory that houses anything.
+     * **WARNING**: This will delete any files inside said directory.
      *
      * @since 0.1-SNAPSHOT
      * @author yujin
      */
-    fun getPlayerYPos() {
-
-    }
-
-    /**
-     * Gets the Z position of the player.
-     *
-     * @since 0.1-SNAPSHOT
-     * @author yujin
-     */
-    fun getPlayerZPos() {
+    fun deleteDirectory() {
 
     }
 }

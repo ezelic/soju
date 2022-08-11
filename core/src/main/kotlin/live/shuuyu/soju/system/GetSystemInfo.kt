@@ -55,7 +55,8 @@ object GetSystemInfo {
 
     /**
      * Determines the distribution of Linux. This includes:
-     *
+     * Arch (aarch64)
+     * Debian
      */
 
     /**

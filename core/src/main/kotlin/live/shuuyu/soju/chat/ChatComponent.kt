@@ -44,4 +44,8 @@ object ChatComponent {
     fun say(text: String) {
 
     }
+
+    /**
+     * Executes the specified instruction once
+     */
 }
