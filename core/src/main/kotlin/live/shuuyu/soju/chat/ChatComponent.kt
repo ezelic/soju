@@ -46,6 +46,18 @@ object ChatComponent {
     }
 
     /**
+     * This is a client side function.
+     * Sends a message via the action bar above
+     * your hotbar.
+     *
+     * @since 0.1-SNAPSHOT
+     * @author yujin
+     */
+    fun actionBar(text: String) {
+
+    }
+
+    /**
      * Executes the specified instruction once
      */
 }

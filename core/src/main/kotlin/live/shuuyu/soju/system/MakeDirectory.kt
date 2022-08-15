@@ -20,6 +20,9 @@ package live.shuuyu.soju.system
 
 import java.io.File
 
+/**
+ * 
+ */
 object MakeDirectory {
     /**
      * Creates a directory to house whatever the
