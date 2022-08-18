@@ -18,12 +18,5 @@
 
 package live.shuuyu.soju.keyboards
 
-/**
- * Registers all the keys on the current US keyboard.
- *
- * @since 0.1-SNAPSHOT
- * @author yujin
- */
-object KeyboardInputs {
-
+enum class KeyboardRegisterType() {
 }

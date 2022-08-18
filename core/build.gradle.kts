@@ -1,3 +1,5 @@
+import kotlinx.atomicfu.plugin.gradle.configureJvmTransformation
+
 /*
  * Champagne
  * Copyright (C) 2022 Shuuyu
@@ -29,6 +31,19 @@ repositories {
 
 dependencies {
     val lwjglVersion = "3.3.1"
+    val kotlinVersion = "1.7.10"
+    val coroutinesVersion = "1.6.4"
+    val serializationVersion = "1.3.3"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:$serializationVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:$serializationVersion")
     compileOnly("org.lwjgl:lwjgl-opengl:$lwjglVersion")
     implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-windows")
     implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-linux")

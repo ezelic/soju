@@ -16,14 +16,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package live.shuuyu.soju.keyboards
-
-/**
- * Registers all the keys on the current US keyboard.
- *
- * @since 0.1-SNAPSHOT
- * @author yujin
- */
-object KeyboardInputs {
-
-}
+package live.shuuyu.soju.commands

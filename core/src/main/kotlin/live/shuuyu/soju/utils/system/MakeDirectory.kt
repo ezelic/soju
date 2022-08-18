@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package live.shuuyu.soju.system
+package live.shuuyu.soju.utils.system
 
 import java.io.File
 
