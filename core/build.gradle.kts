@@ -33,7 +33,7 @@ dependencies {
     val lwjglVersion = "3.3.1"
     val kotlinVersion = "1.7.10"
     val coroutinesVersion = "1.6.4"
-    val serializationVersion = "1.3.3"
+    val serializationVersion = "1.4.0"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion")
