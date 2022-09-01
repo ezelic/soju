@@ -18,6 +18,8 @@
 
 package live.shuuyu.soju.keyboards
 
+import net.minecraft.client.Keyboard
+
 /**
  * All the keys on the keyboard according to LWJGL.
  * If you actually use a tenkey keyboard with all the
@@ -27,5 +29,4 @@ package live.shuuyu.soju.keyboards
  * @author yujin
  */
 enum class KeyboardEnum(val key: String, val lwjglKey: Int) {
-
 }

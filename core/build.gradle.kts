@@ -21,33 +21,25 @@ import kotlinx.atomicfu.plugin.gradle.configureJvmTransformation
 plugins {
     `champagne-module`
     `champagne-publishing`
+    id("dev.architectury.loom") version "0.12.0-SNAPSHOT"
     groovy
     java
 }
+
+java.withSourcesJar()
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    val lwjglVersion = "3.3.1"
-    val kotlinVersion = "1.7.10"
-    val coroutinesVersion = "1.6.4"
-    val serializationVersion = "1.3.3"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:$serializationVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:$serializationVersion")
-    compileOnly("org.lwjgl:lwjgl-opengl:$lwjglVersion")
-    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-windows")
-    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-linux")
-    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-macos")
-    implementation("org.lwjgl:lwjgl:$lwjglVersion:natives-macos-arm64")
     api(kotlin("stdlib-jdk8"))
+    minecraft("com.mojang:minecraft:1.19.2")
+    mappings("net.fabricmc:yarn:1.19.2+build.8:v2")
+    modImplementation("net.fabricmc:fabric-loader:0.14.9")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.60.0+1.19.2")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.3+kotlin.1.7.10")
+    implementation(libs.bundles.kotlinLibs.bundle)
+    implementation(libs.bundles.lwjgl.bundle)
+    implementation(libs.bundles.ktor.bundle)
 }

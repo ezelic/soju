@@ -37,7 +37,9 @@ abstract class CommandBase(
      * @since 0.1-SNAPSHOT
      * @author yujin
      */
-    final fun alias(): List<String>? = null
+    final fun alias(
+        name: String
+    ): List<String>? = null
 
     /**
      * Sets up a sub command that can be executed.
@@ -45,4 +47,5 @@ abstract class CommandBase(
      * @since 0.1-SNAPSHOT
      * @author yujin
      */
+
 }
