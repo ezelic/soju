@@ -16,7 +16,7 @@ dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation(kotlin("serialization"))
     implementation("org.jetbrains.dokka", "dokka-gradle-plugin", "1.7.10")
-    implementation("org.jetbrains.kotlinx", "atomicfu-gradle-plugin", "0.18.3")
+    implementation("org.jetbrains.kotlinx", "atomicfu-gradle-plugin", "0.18.4")
     implementation(gradleApi())
     implementation(localGroovy())
 }
