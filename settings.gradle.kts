@@ -1,75 +1,60 @@
+
+
 /*
- * Champagne
- * Copyright (C) 2022 Shuuyu
+ * This file is part of Blossom, licensed under the MIT License (MIT).
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Copyright (c) 2022 Myosyn
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        gradlePluginPortal()
         maven("https://jitpack.io")
         maven("https://maven.fabricmc.net")
-        maven("https://maven.quiltmc.org/repository/release")
-        maven("https://maven.minecraftforge.net/")
         maven("https://maven.architectury.dev/")
+        maven("https://maven.minecraftforge.net/")
+        maven("https://maven.quiltmc.org/repository/release")
+        maven("https://repo.essential.gg/repository/maven-public")
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
     }
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "org.jetbrains.dokka") {
                 useModule("org.jetbrains.dokka:dokka-gradle-plugin:${requested.version}")
             }
+
+            if (requested.id.id == "kotlinx-atomicfu") {
+                useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
+            }
         }
     }
 }
 
-rootProject.name = "champagne"
+rootProject.name = "Blossom"
 
-include(":core")
-
-
-/**
- * Implements all Ktor implementation within a single implementation.
- *
- * @author yujin
- */
-// Apparently bom doesn't exist on ktor anymore?
-fun VersionCatalogBuilder.ktor() {
-    val ktorVersion = version("ktor", "2.1.0")
-
-    // library("ktor-bom", "io.ktor", "ktor-bom").versionRef(ktorVersion)
-    library("ktor-client-json", "io.ktor", "ktor-client-json").versionRef(ktorVersion)
-    library("ktor-client-websockets", "io.ktor", "ktor-client-websockets").versionRef(ktorVersion)
-    library("ktor-server-core-jvm", "io.ktor", "ktor-server-core-jvm").versionRef(ktorVersion)
-    library("ktor-client-core-jvm", "io.ktor", "ktor-client-core-jvm").versionRef(ktorVersion)
-    library("ktor-client-cio-jvm", "io.ktor", "ktor-client-cio-jvm").versionRef(ktorVersion)
-    library("ktor-client-content-negotiation-jvm", "io.ktor", "ktor-client-content-negotiation-jvm").versionRef(ktorVersion)
-
-    bundle("ktor-bundle", listOf(
-        // "ktor-bom",
-        "ktor-client-json",
-        "ktor-client-websockets",
-        "ktor-server-core-jvm",
-        "ktor-client-core-jvm",
-        "ktor-client-cio-jvm",
-        "ktor-client-content-negotiation-jvm",
-    ))
-}
+include(":soju-core")
+include(":versions:1.19.2-fabric")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -79,8 +64,40 @@ dependencyResolutionManagement {
             kotlinLibs()
             commonmark()
             fabriccommons()
+            nightconfig()
         }
     }
+}
+
+/**
+ * Implements all Ktor implementation within a single implementation.
+ *
+ * @author yujin
+ */
+// Apparently bom doesn't exist on ktor anymore?
+fun VersionCatalogBuilder.ktor() {
+    val ktorVersion = "2.1.2"
+
+    library("ktor-client-json", "io.ktor", "ktor-client-json").version(ktorVersion)
+    library("ktor-client-websockets", "io.ktor", "ktor-client-websockets").version(ktorVersion)
+    library("ktor-client-core-jvm", "io.ktor", "ktor-client-core-jvm").version(ktorVersion)
+    library("ktor-client-cio-jvm", "io.ktor", "ktor-client-cio-jvm").version(ktorVersion)
+    library(
+        "ktor-client-content-negotiation-jvm",
+        "io.ktor",
+        "ktor-client-content-negotiation-jvm"
+    ).version(ktorVersion)
+
+    bundle(
+        "ktor-bundle", listOf(
+            // "ktor-bom",
+            "ktor-client-json",
+            "ktor-client-websockets",
+            "ktor-client-core-jvm",
+            "ktor-client-cio-jvm",
+            "ktor-client-content-negotiation-jvm",
+        )
+    )
 }
 
 /**
@@ -89,15 +106,17 @@ dependencyResolutionManagement {
  * @author yujin
  */
 fun VersionCatalogBuilder.lwjgl3() {
-    val lwjglVersion = version("lwjgl", "3.3.1")
+    val lwjglVersion = "3.3.1"
 
-    library("lwjgl", "org.lwjgl", "lwjgl").versionRef(lwjglVersion)
-    library("lwjgl-opengl", "org.lwjgl", "lwjgl-opengl").versionRef(lwjglVersion)
+    library("lwjgl", "org.lwjgl", "lwjgl").version(lwjglVersion)
+    library("lwjgl-opengl", "org.lwjgl", "lwjgl-opengl").version(lwjglVersion)
 
-    bundle("lwjgl-bundle", listOf(
-        "lwjgl",
-        "lwjgl-opengl",
-    ))
+    bundle(
+        "lwjgl-bundle", listOf(
+            "lwjgl",
+            "lwjgl-opengl",
+        )
+    )
 }
 
 /**
@@ -106,33 +125,38 @@ fun VersionCatalogBuilder.lwjgl3() {
  * @author yujin
  */
 fun VersionCatalogBuilder.kotlinLibs() {
-    val kotlinVersion = version("kotlin", "1.7.10")
-    val coroutineVersion = version("coroutuine", "1.6.4")
-    val serializationVersion = version("serialization", "1.4.0")
-    val atomicfuVersion = version("atomicfu", "0.18.3")
+    val kotlinVersion = "1.7.20"
+    val coroutineVersion = "1.6.4"
+    val serializationVersion = "1.4.0"
+    val atomicfuVersion = "0.18.3"
 
-    library("kotlin-stdlib", "org.jetbrains.kotlin", "kotlin-stdlib").versionRef(kotlinVersion)
-    library("kotlin-stdlib-jdk7", "org.jetbrains.kotlin", "kotlin-stdlib-jdk7").versionRef(kotlinVersion)
-    library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef(kotlinVersion)
-    library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").versionRef(kotlinVersion)
-    library("kotlinx-coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef(coroutineVersion)
-    library("kotlinx-coroutines-core-jvm", "org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm").versionRef(coroutineVersion)
-    library("kotlinx-coroutines-jdk8", "org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8").versionRef(coroutineVersion)
-    library("kotlinx-serialization", "org.jetbrains.kotlinx", "kotlinx-serialization-json").versionRef(serializationVersion)
-    library("kotlinx-serialization-core-jvm", "org.jetbrains.kotlinx", "kotlinx-serialization-core-jvm").versionRef(serializationVersion)
-    library("kotlinx-serialization-json-jvm", "org.jetbrains.kotlinx", "kotlinx-serialization-json-jvm").versionRef(serializationVersion)
-    library("atomicfu", "org.jetbrains.kotlinx", "atomicfu").versionRef(atomicfuVersion)
+    library("kotlin-stdlib", "org.jetbrains.kotlin", "kotlin-stdlib").version(kotlinVersion)
+    library("kotlin-stdlib-jdk7", "org.jetbrains.kotlin", "kotlin-stdlib-jdk7").version(kotlinVersion)
+    library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").version(kotlinVersion)
+    library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").version(kotlinVersion)
+    library("kotlinx-coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").version(coroutineVersion)
+    library("kotlinx-coroutines-core-jvm", "org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm").version(
+        coroutineVersion
+    )
+    library("kotlinx-coroutines-jdk8", "org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8").version(coroutineVersion)
+    library(
+        "kotlinx-serialization",
+        "org.jetbrains.kotlinx",
+        "kotlinx-serialization-json"
+    ).version(serializationVersion)
+    library("atomicfu", "org.jetbrains.kotlinx", "atomicfu").version(atomicfuVersion)
 
-    bundle("kotlinLibs-bundle", listOf(
-        "kotlin-stdlib",
-        "kotlin-stdlib-jdk7",
-        "kotlin-stdlib-jdk8",
-        "kotlin-reflect",
-        "kotlinx-coroutines-core",
-        "kotlinx-coroutines-core-jvm",
-        "kotlinx-coroutines-jdk8",
-        "atomicfu",
-    ))
+    bundle(
+        "kotlinLibs-bundle", listOf(
+            "kotlin-stdlib",
+            "kotlin-stdlib-jdk7",
+            "kotlin-stdlib-jdk8",
+            "kotlin-reflect",
+            "kotlinx-coroutines-core",
+            "kotlinx-coroutines-core-jvm",
+            "kotlinx-coroutines-jdk8",
+            "atomicfu",
+        ))
 }
 
 /**
@@ -141,17 +165,35 @@ fun VersionCatalogBuilder.kotlinLibs() {
  * @author yujin
  */
 fun VersionCatalogBuilder.commonmark() {
-    val commonmarkVersion = version("commonmark", "0.19.0")
+    val commonmarkVersion = "0.19.0"
 
-    library("commonmark", "org.commonmark", "commonmark").versionRef(commonmarkVersion)
-    library("commonmark-ext-gfm-strikethrough", "org.commonmark", "commonmark-ext-gfm-strikethrough").versionRef(commonmarkVersion)
-    library("commonmark-ext-ins", "org.commonmark", "commonmark-ext-ins").versionRef(commonmarkVersion)
+    library("commonmark", "org.commonmark", "commonmark").version(commonmarkVersion)
+    library("commonmark-ext-gfm-strikethrough", "org.commonmark", "commonmark-ext-gfm-strikethrough").version(
+        commonmarkVersion
+    )
+    library("commonmark-ext-ins", "org.commonmark", "commonmark-ext-ins").version(commonmarkVersion)
 
-    bundle("commonmark-bundle", listOf(
-        "commonmark",
-        "commonmark-ext-gfm-strikethrough",
-        "commonmark-ext-ins",
-    ))
+    bundle(
+        "commonmark-bundle", listOf(
+            "commonmark",
+            "commonmark-ext-gfm-strikethrough",
+            "commonmark-ext-ins",
+        )
+    )
+}
+
+fun VersionCatalogBuilder.nightconfig() {
+    val nightconfigVersion = "3.6.6"
+
+    library("core", "com.electronwill.night-config", "core").version(nightconfigVersion)
+    library("toml", "com.electronwill.night-config", "toml").version(nightconfigVersion)
+
+    bundle(
+        "nightconfig-bundle", listOf(
+            "core",
+            "toml",
+        )
+    )
 }
 
 /**
@@ -164,14 +206,16 @@ fun VersionCatalogBuilder.commonmark() {
  * @since 0.1-SNAPSHOT
  */
 fun VersionCatalogBuilder.fabriccommons() {
-    val fabricKotlinVersion = version("fabric-language-kotlin", "1.8.2+kotlin.1.7.10")
-    val fabricLoaderVersion = version("fabric-loader", "0.14.9")
+    val fabricKotlinVersion = "1.8.4+kotlin.1.7.20"
+    val fabricLoaderVersion = "0.14.9"
 
-    library("fabric-language-kotlin", "net.fabricmc", "fabric-language-kotlin").versionRef(fabricKotlinVersion)
-    library("fabric-loader", "net.fabricmc", "fabric-loader").versionRef(fabricLoaderVersion)
+    library("fabric-language-kotlin", "net.fabricmc", "fabric-language-kotlin").version(fabricKotlinVersion)
+    library("fabric-loader", "net.fabricmc", "fabric-loader").version(fabricLoaderVersion)
 
-    bundle("fabric-bundle", listOf(
-        "fabric-language-kotlin",
-        "fabric-loader",
-    ))
+    bundle(
+        "fabric-bundle", listOf(
+            "fabric-language-kotlin",
+            "fabric-loader",
+        )
+    )
 }

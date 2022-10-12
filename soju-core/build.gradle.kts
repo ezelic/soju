@@ -1,5 +1,3 @@
-import kotlinx.atomicfu.plugin.gradle.configureJvmTransformation
-
 /*
  * Champagne
  * Copyright (C) 2022 Shuuyu
@@ -19,18 +17,14 @@ import kotlinx.atomicfu.plugin.gradle.configureJvmTransformation
  */
 
 plugins {
-    `champagne-module`
-    `champagne-publishing`
+    kotlin("jvm")
+    kotlin("plugin.serialization")
     id("dev.architectury.loom") version "0.12.0-SNAPSHOT"
     groovy
     java
 }
 
 java.withSourcesJar()
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     api(kotlin("stdlib-jdk8"))
