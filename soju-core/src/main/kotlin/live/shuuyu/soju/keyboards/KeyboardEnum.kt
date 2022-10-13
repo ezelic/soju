@@ -18,7 +18,6 @@
 
 package live.shuuyu.soju.keyboards
 
-import net.minecraft.client.Keyboard
 
 /**
  * All the keys on the keyboard according to LWJGL.

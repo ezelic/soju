@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.BIN
 
 plugins {
     kotlin("jvm") version "1.7.20" apply false

@@ -19,7 +19,6 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
-    id("dev.architectury.loom") version "0.12.0-SNAPSHOT"
     groovy
     java
 }
@@ -28,11 +27,6 @@ java.withSourcesJar()
 
 dependencies {
     api(kotlin("stdlib-jdk8"))
-    minecraft("com.mojang:minecraft:1.19.2")
-    mappings("net.fabricmc:yarn:1.19.2+build.8:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.14.9")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.60.0+1.19.2")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.3+kotlin.1.7.10")
     implementation(libs.bundles.kotlinLibs.bundle)
     implementation(libs.bundles.lwjgl.bundle)
     implementation(libs.bundles.ktor.bundle)

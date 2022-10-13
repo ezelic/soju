@@ -54,6 +54,7 @@ pluginManagement {
 rootProject.name = "Blossom"
 
 include(":soju-core")
+include(":soju-common")
 include(":versions:1.19.2-fabric")
 
 dependencyResolutionManagement {
@@ -82,15 +83,10 @@ fun VersionCatalogBuilder.ktor() {
     library("ktor-client-websockets", "io.ktor", "ktor-client-websockets").version(ktorVersion)
     library("ktor-client-core-jvm", "io.ktor", "ktor-client-core-jvm").version(ktorVersion)
     library("ktor-client-cio-jvm", "io.ktor", "ktor-client-cio-jvm").version(ktorVersion)
-    library(
-        "ktor-client-content-negotiation-jvm",
-        "io.ktor",
-        "ktor-client-content-negotiation-jvm"
-    ).version(ktorVersion)
+    library("ktor-client-content-negotiation-jvm", "io.ktor", "ktor-client-content-negotiation-jvm").version(ktorVersion)
 
     bundle(
         "ktor-bundle", listOf(
-            // "ktor-bom",
             "ktor-client-json",
             "ktor-client-websockets",
             "ktor-client-core-jvm",
@@ -135,15 +131,9 @@ fun VersionCatalogBuilder.kotlinLibs() {
     library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").version(kotlinVersion)
     library("kotlin-reflect", "org.jetbrains.kotlin", "kotlin-reflect").version(kotlinVersion)
     library("kotlinx-coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").version(coroutineVersion)
-    library("kotlinx-coroutines-core-jvm", "org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm").version(
-        coroutineVersion
-    )
+    library("kotlinx-coroutines-core-jvm", "org.jetbrains.kotlinx", "kotlinx-coroutines-core-jvm").version(coroutineVersion)
     library("kotlinx-coroutines-jdk8", "org.jetbrains.kotlinx", "kotlinx-coroutines-jdk8").version(coroutineVersion)
-    library(
-        "kotlinx-serialization",
-        "org.jetbrains.kotlinx",
-        "kotlinx-serialization-json"
-    ).version(serializationVersion)
+    library("kotlinx-serialization", "org.jetbrains.kotlinx", "kotlinx-serialization-json").version(serializationVersion)
     library("atomicfu", "org.jetbrains.kotlinx", "atomicfu").version(atomicfuVersion)
 
     bundle(
@@ -168,9 +158,7 @@ fun VersionCatalogBuilder.commonmark() {
     val commonmarkVersion = "0.19.0"
 
     library("commonmark", "org.commonmark", "commonmark").version(commonmarkVersion)
-    library("commonmark-ext-gfm-strikethrough", "org.commonmark", "commonmark-ext-gfm-strikethrough").version(
-        commonmarkVersion
-    )
+    library("commonmark-ext-gfm-strikethrough", "org.commonmark", "commonmark-ext-gfm-strikethrough").version(commonmarkVersion)
     library("commonmark-ext-ins", "org.commonmark", "commonmark-ext-ins").version(commonmarkVersion)
 
     bundle(
@@ -188,8 +176,7 @@ fun VersionCatalogBuilder.nightconfig() {
     library("core", "com.electronwill.night-config", "core").version(nightconfigVersion)
     library("toml", "com.electronwill.night-config", "toml").version(nightconfigVersion)
 
-    bundle(
-        "nightconfig-bundle", listOf(
+    bundle("nightconfig-bundle", listOf(
             "core",
             "toml",
         )
@@ -212,10 +199,8 @@ fun VersionCatalogBuilder.fabriccommons() {
     library("fabric-language-kotlin", "net.fabricmc", "fabric-language-kotlin").version(fabricKotlinVersion)
     library("fabric-loader", "net.fabricmc", "fabric-loader").version(fabricLoaderVersion)
 
-    bundle(
-        "fabric-bundle", listOf(
-            "fabric-language-kotlin",
-            "fabric-loader",
+    bundle("fabric-bundle", listOf(
+            "fabric-language-kotlin", "fabric-loader",
         )
     )
 }

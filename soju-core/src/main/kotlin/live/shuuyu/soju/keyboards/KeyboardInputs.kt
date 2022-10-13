@@ -18,7 +18,6 @@
 
 package live.shuuyu.soju.keyboards
 
-import net.minecraft.client.Keyboard
 
 /**
  * Registers all the keys on the current US keyboard.

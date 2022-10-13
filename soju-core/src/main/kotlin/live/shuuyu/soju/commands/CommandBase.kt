@@ -22,30 +22,19 @@ package live.shuuyu.soju.commands
  * Base command for commands that require many functions.
  * Includes base name, aliases, and executed functions.
  *
+ * @param name The name of the command. This will be the name to execute the command.
+ * @param alias The alias of the command.
+ * @param description Provides context of what the command does.
+ *
  * @since 0.1-SNAPSHOT
  * @author yujin
  */
-abstract class CommandBase(
+abstract class CommandBase (
     val name: String,
-    open val alias: List<String>? = null,
+    open val alias: String? = null,
     val description: String? = "No description provided on what this does.",
     ) {
-    /**
-     * Aliases to the current command of which
-     * execute the same function as the main command.
-     *
-     * @since 0.1-SNAPSHOT
-     * @author yujin
-     */
-    final fun alias(
-        name: String
-    ): List<String>? = null
+    abstract suspend fun execute(ctx: CommandContext)
 
-    /**
-     * Sets up a sub command that can be executed.
-     *
-     * @since 0.1-SNAPSHOT
-     * @author yujin
-     */
 
 }
