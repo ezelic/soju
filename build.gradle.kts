@@ -23,7 +23,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.20"
     kotlin("plugin.serialization") version "1.7.20" apply false
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
-    id("dev.architectury.loom") version "0.12.0-SNAPSHOT" apply false
+    id("dev.architectury.loom") version "1.0.302" apply false
     id("gg.essential.loom") version "0.10.0.+" apply false
     id("io.github.juuxel.loom-quiltflower") version "1.7.4" apply false
     signing
