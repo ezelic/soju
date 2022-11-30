@@ -121,7 +121,7 @@ fun VersionCatalogBuilder.lwjgl3() {
  * @author yujin
  */
 fun VersionCatalogBuilder.kotlinLibs() {
-    val kotlinVersion = "1.7.20"
+    val kotlinVersion = "1.7.22"
     val coroutineVersion = "1.6.4"
     val serializationVersion = "1.4.0"
     val atomicfuVersion = "0.18.3"
