@@ -19,9 +19,9 @@
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.BIN
 
 plugins {
-    kotlin("jvm") version "1.7.20" apply false
+    kotlin("jvm") version "1.7.22" apply false
     id("org.jetbrains.dokka") version "1.7.20"
-    kotlin("plugin.serialization") version "1.7.20" apply false
+    kotlin("plugin.serialization") version "1.7.22" apply false
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
     id("dev.architectury.loom") version "0.12.0-SNAPSHOT" apply false
     id("gg.essential.loom") version "0.10.0.+" apply false
