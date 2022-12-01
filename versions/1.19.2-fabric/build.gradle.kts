@@ -30,7 +30,7 @@ quiltflower {
 dependencies {
     implementation(project(":soju-core"))
     minecraft("com.mojang:minecraft:1.19.1")
-    mappings("net.fabricmc:yarn:1.19.1+build.1:v2")
+    mappings("net.fabricmc:yarn:1.19.3-pre3+build.3:v2")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.58.5+1.19.1")
     modImplementation(libs.bundles.fabric.bundle)
 }
